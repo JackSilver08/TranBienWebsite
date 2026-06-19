@@ -5,6 +5,97 @@
   'use strict';
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isHttp = /^https?:$/.test(window.location.protocol);
+
+  /* ---- Fresh deploy detection: keep mobile browsers from holding stale pages ---- */
+  const hashText = async (text) => {
+    if (window.crypto && crypto.subtle && window.TextEncoder) {
+      const bytes = new TextEncoder().encode(text);
+      const buffer = await crypto.subtle.digest('SHA-256', bytes);
+      return [...new Uint8Array(buffer)]
+        .slice(0, 12)
+        .map((byte) => byte.toString(16).padStart(2, '0'))
+        .join('');
+    }
+
+    let hash = 5381;
+    for (let i = 0; i < text.length; i += 1) hash = (hash * 33) ^ text.charCodeAt(i);
+    return (hash >>> 0).toString(16);
+  };
+
+  const checkForFreshDeploy = (() => {
+    if (!isHttp) return () => {};
+
+    const storageKey = 'tranbienweb:html-hash';
+    const reloadKey = 'tranbienweb:reloaded-hash';
+    let checking = false;
+
+    return async () => {
+      if (checking) return;
+      checking = true;
+
+      try {
+        const siteBase = `${location.origin}${location.pathname.replace(/[^/]*$/, '')}`;
+        const coreFiles = ['index.html', 'css/style.css', 'js/main.js', 'sw.js'];
+        const payloads = await Promise.all(
+          coreFiles.map(async (file) => {
+            const fileUrl = new URL(file, siteBase);
+            fileUrl.searchParams.set('_fresh', Date.now().toString());
+            const response = await fetch(fileUrl, {
+              cache: 'no-store',
+              headers: { 'Cache-Control': 'no-cache' },
+            });
+            if (!response.ok) throw new Error(`Cannot refresh ${file}`);
+            return `${file}:${await response.text()}`;
+          })
+        );
+
+        const latestHash = await hashText(payloads.join('\n'));
+        const knownHash = localStorage.getItem(storageKey);
+
+        if (knownHash && knownHash !== latestHash && sessionStorage.getItem(reloadKey) !== latestHash) {
+          localStorage.setItem(storageKey, latestHash);
+          sessionStorage.setItem(reloadKey, latestHash);
+
+          const freshUrl = new URL(window.location.href);
+          freshUrl.searchParams.set('v', latestHash);
+          window.location.replace(freshUrl.toString());
+          return;
+        }
+
+        localStorage.setItem(storageKey, latestHash);
+      } catch (err) {
+        // Update checks should never interrupt the website experience.
+      } finally {
+        checking = false;
+      }
+    };
+  })();
+
+  if (isHttp && 'serviceWorker' in navigator) {
+    let refreshing = false;
+    window.addEventListener('load', () => {
+      navigator.serviceWorker
+        .register('/sw.js')
+        .then((registration) => {
+          registration.update();
+        })
+        .catch(() => {});
+    });
+
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (refreshing) return;
+      refreshing = true;
+      window.location.reload();
+    });
+  }
+
+  checkForFreshDeploy();
+  window.addEventListener('focus', checkForFreshDeploy);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) checkForFreshDeploy();
+  });
+  setInterval(checkForFreshDeploy, 60000);
 
   /* ---- Navbar: shrink on scroll + mobile toggle ---- */
   const nav = document.getElementById('nav');
