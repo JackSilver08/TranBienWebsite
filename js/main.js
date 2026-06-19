@@ -14,16 +14,26 @@
 
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
-  toggle.addEventListener('click', () => {
-    const open = links.classList.toggle('open');
+  const overlay = document.getElementById('navOverlay');
+  const closeBtn = document.getElementById('navClose');
+
+  const setMenu = (open) => {
+    links.classList.toggle('open', open);
     toggle.classList.toggle('open', open);
-  });
+    if (overlay) overlay.classList.toggle('open', open);
+    document.body.classList.toggle('nav-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  toggle.addEventListener('click', () => setMenu(!links.classList.contains('open')));
+  if (closeBtn) closeBtn.addEventListener('click', () => setMenu(false));
+  if (overlay) overlay.addEventListener('click', () => setMenu(false));
   links.querySelectorAll('a').forEach((a) =>
-    a.addEventListener('click', () => {
-      links.classList.remove('open');
-      toggle.classList.remove('open');
-    })
+    a.addEventListener('click', () => setMenu(false))
   );
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenu(false);
+  });
 
   /* ---- Scroll reveal ---- */
   const reveals = document.querySelectorAll('.reveal');
