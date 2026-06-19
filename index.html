@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#FAF8F2" />
+  <title>Trấn Biên Web — Thiết kế Website & Phần Mềm Nội Bộ</title>
+  <meta name="description" content="Trấn Biên Web — Thiết kế Website, Landing Page, ERP, CRM và phần mềm nội bộ doanh nghiệp chuyên nghiệp tại Việt Nam. Đại diện: Trần Quang Tuấn." />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap 5 (grid + responsive utilities) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="assets/logo.png" />
+</head>
+<body>
+
+  <!-- Decorative background layers -->
+  <div class="bg-layer">
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="bg-blob bg-blob--blue" aria-hidden="true"></div>
+    <div class="bg-blob bg-blob--gold" aria-hidden="true"></div>
+    <canvas id="particles" aria-hidden="true"></canvas>
+  </div>
+
+  <!-- Reusable abstract shapes (defs) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#4B7BFF"/><stop offset="1" stop-color="#1336A8"/>
+      </linearGradient>
+      <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#F8B43A"/><stop offset="1" stop-color="#E8770C"/>
+      </linearGradient>
+    </defs>
+  </svg>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="nav__brand" href="#top" aria-label="Trấn Biên Web">
+        <img src="assets/logo-trim.png" alt="Trấn Biên Web" class="nav__logo" />
+      </a>
+
+      <nav class="nav__links" id="navLinks">
+        <a href="#services">Dịch vụ</a>
+        <a href="#portfolio">Dự án</a>
+        <a href="#process">Quy trình</a>
+        <a href="#contact">Liên hệ</a>
+      </nav>
+
+      <div class="nav__actions">
+        <button class="nav__toggle" id="navToggle" aria-label="Mở menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <main id="top">
+    <section class="hero">
+      <!-- abstract shapes -->
+      <span class="shape shape--ring s1" aria-hidden="true"></span>
+      <span class="shape shape--plus s2" aria-hidden="true"></span>
+      <span class="shape shape--tri s3" aria-hidden="true"></span>
+      <span class="shape shape--dots s4" aria-hidden="true"></span>
+
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <div class="hero__copy reveal">
+              <span class="pill">
+                <span class="pill__dot"></span>
+                Đối tác công nghệ cho doanh nghiệp Việt
+              </span>
+              <h1 class="hero__title">
+                <span class="hero__title-main">Website &amp; Phần Mềm</span>
+                <span class="grad-text hero__title-focus">Chuyên Nghiệp</span>
+              </h1>
+              <p class="hero__lead">
+                Chúng tôi biến ý tưởng của bạn thành sản phẩm số tinh tế —
+                website, landing page và phần mềm quản trị (ERP, CRM) chuẩn
+                doanh nghiệp, đẹp mắt, tối ưu và bàn giao tận tâm.
+              </p>
+              <div class="hero__cta">
+                <a href="#contact" class="btn btn--primary">
+                  Tư Vấn Miễn Phí
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                </a>
+                <a href="#portfolio" class="btn btn--ghost">Xem Dự Án</a>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 3D floating browser cluster -->
+          <div class="col-lg-6">
+            <div class="hero__art reveal" id="heroArt">
+              <div class="art-tilt">
+                <div class="window window--main glass float-a">
+                  <div class="window__bar">
+                    <span class="dot dot--r"></span><span class="dot dot--y"></span><span class="dot dot--g"></span>
+                    <div class="window__url">www.tranbienweb.vn</div>
+                  </div>
+                  <div class="window__body">
+                    <div class="ui-hero">
+                      <div class="ui-hero__title"></div>
+                      <div class="ui-hero__line"></div>
+                      <div class="ui-hero__line short"></div>
+                      <div class="ui-hero__btn"></div>
+                    </div>
+                    <div class="ui-hero__visual"></div>
+                  </div>
+                </div>
+
+                <div class="window window--dash glass float-b">
+                  <div class="dash__head">
+                    <span>Doanh thu</span>
+                    <span class="dash__tag">+24%</span>
+                  </div>
+                  <div class="dash__chart">
+                    <span style="--h:42%"></span><span style="--h:65%"></span>
+                    <span style="--h:50%"></span><span style="--h:80%"></span>
+                    <span style="--h:60%"></span><span style="--h:95%"></span>
+                  </div>
+                </div>
+
+                <div class="window window--code glass float-c">
+                  <div class="code__line"><i class="c-key">const</i> <i class="c-var">app</i> = <i class="c-fn">build</i>();</div>
+                  <div class="code__line"><i class="c-var">app</i>.<i class="c-fn">ship</i>(<i class="c-str">'fast'</i>);</div>
+                  <div class="code__line"><i class="c-key">return</i> <i class="c-str">'🚀'</i>;</div>
+                </div>
+
+                <div class="chip glass float-d">
+                  <div class="chip__ico">✓</div>
+                  <div><strong>Deploy thành công</strong><small>2.3s build time</small></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== VISION & MISSION ===== -->
+    <section class="section section--alt" id="about">
+      <span class="shape shape--ring s5" aria-hidden="true"></span>
+      <span class="shape shape--dots s7" aria-hidden="true"></span>
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Giới thiệu</span>
+          <h2 class="section__title">Tầm nhìn &amp; <span class="grad-text">Sứ mệnh</span></h2>
+          <p class="section__sub">Đồng hành cùng doanh nghiệp địa phương trên hành trình chuyển đổi số.</p>
+        </div>
+
+        <div class="vmx">
+          <article class="vmx__card vmx__card--mission reveal">
+            <div class="vmx__ico ico--blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
+            </div>
+            <span class="vmx__label">Sứ mệnh</span>
+            <h3>Giải pháp số cho doanh nghiệp địa phương</h3>
+            <p>Mang đến website và phần mềm chất lượng cao, chi phí hợp lý cho các doanh nghiệp vừa và nhỏ tại khu vực <strong>Trấn Biên, Đồng Nai</strong> — giúp mỗi doanh nghiệp tự tin chuyển đổi số và phát triển bền vững.</p>
+          </article>
+
+          <article class="vmx__card vmx__card--vision reveal">
+            <div class="vmx__ico ico--gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <span class="vmx__label vmx__label--gold">Tầm nhìn</span>
+            <h3>Vươn ra các khu vực lân cận</h3>
+            <p>Trở thành đối tác công nghệ được tin cậy, mở rộng đồng hành cùng doanh nghiệp tại các <strong>khu vực lân cận</strong>, lan toả giá trị của thiết kế nghệ thuật và công nghệ hiện đại ra toàn vùng.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="section" id="services">
+      <span class="shape shape--ring s5" aria-hidden="true"></span>
+      <span class="shape shape--blob s6" aria-hidden="true"></span>
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Dịch vụ</span>
+          <h2 class="section__title">Giải pháp số <span class="grad-text">trọn gói</span></h2>
+          <p class="section__sub">Từ một trang landing page đến hệ thống quản trị nội bộ — chúng tôi đồng hành cùng bạn ở mọi giai đoạn.</p>
+        </div>
+
+        <div class="row g-4 g-lg-5 justify-content-center solutions">
+          <div class="col-md-6 col-lg-5 reveal">
+            <article class="scard scard--blue">
+              <span class="scard__num">01</span>
+              <div class="scard__ico ico--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2.2"/><path d="M3 9h18"/><path d="M7 13h5"/><path d="M7 16h3"/><path d="M15 13l4 2-2 1 1 2-1.7.8-1-2-1.8 1z"/></svg>
+              </div>
+              <h3>Thiết kế Website</h3>
+              <p>Website &amp; landing page nghệ thuật, chuẩn SEO và tốc độ cao — thể hiện trọn vẹn bản sắc thương hiệu của bạn.</p>
+              <ul class="scard__list">
+                <li>Website doanh nghiệp &amp; thương mại điện tử</li>
+                <li>Landing page chuyển đổi cao</li>
+                <li>Chuẩn SEO, responsive mọi thiết bị</li>
+                <li>Giao diện tinh tế, đúng thương hiệu</li>
+              </ul>
+              <a href="#contact" class="scard__cta">Tư vấn ngay →</a>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-5 reveal">
+            <article class="scard scard--gold">
+              <span class="scard__num">02</span>
+              <div class="scard__ico ico--gold">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="4" width="17" height="16" rx="2.2"/><path d="M8 4v16"/><path d="M3.5 9h17"/><path d="M11 13h6"/><path d="M11 16h4"/><path d="M5.5 12h.8M5.5 15h.8"/></svg>
+              </div>
+              <h3>Phần mềm nội bộ</h3>
+              <p>Hệ thống quản trị riêng theo đặc thù doanh nghiệp — vận hành gọn gàng, dữ liệu tập trung, báo cáo realtime.</p>
+              <ul class="scard__list">
+                <li>ERP — kho, mua bán, nhân sự, tài chính</li>
+                <li>CRM — quản lý khách hàng &amp; sales</li>
+                <li>Chấm công, quy trình, phê duyệt</li>
+                <li>Tích hợp API &amp; hệ thống sẵn có</li>
+              </ul>
+              <a href="#contact" class="scard__cta">Tư vấn ngay →</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section class="section section--alt" id="portfolio">
+      <span class="shape shape--dots s7" aria-hidden="true"></span>
+      <span class="shape shape--tri s8" aria-hidden="true"></span>
+      <span class="shape shape--blob s9" aria-hidden="true"></span>
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Dự án tiêu biểu</span>
+          <h2 class="section__title">Sản phẩm <span class="grad-text">đã bàn giao</span></h2>
+          <p class="section__sub">Những website thực tế thể hiện rõ phong cách &amp; chất lượng của chúng tôi. Di chuột để xem toàn trang.</p>
+        </div>
+
+        <!-- Showcase 1: Yume Academy -->
+        <div class="showcase row align-items-center g-5 reveal">
+          <div class="col-lg-7">
+            <figure class="showcase__frame glass">
+              <div class="showcase__bar"><span></span><span></span><span></span><em>yumeacademy.vn</em></div>
+              <div class="showcase__viewport">
+                <img src="assets/yume.png" alt="Website Yume Academy — Trung tâm Nhật ngữ Đồng Nai" class="showcase__shot" loading="lazy" />
+              </div>
+            </figure>
+          </div>
+          <div class="col-lg-5">
+            <div class="showcase__meta">
+              <span class="tagline">Giáo dục · Trung tâm Nhật ngữ</span>
+              <h3>Yume Academy</h3>
+              <p>Website trung tâm tiếng Nhật tại Đồng Nai với phong cách song ngữ Việt – Nhật, hình ảnh đội ngũ ấm áp và lộ trình học rõ ràng, tối ưu cho việc đăng ký khoá học.</p>
+              <ul class="feat">
+                <li>Giao diện song ngữ Việt – Nhật</li>
+                <li>Section đội ngũ &amp; lộ trình học</li>
+                <li>Hiệu ứng cuộn mượt, hình khối mềm mại</li>
+                <li>Tối ưu chuyển đổi đăng ký</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Showcase 2: Dorae Coffee -->
+        <div class="showcase showcase--rev row align-items-center g-5 reveal">
+          <div class="col-lg-7 order-lg-2">
+            <figure class="showcase__frame glass">
+              <div class="showcase__bar"><span></span><span></span><span></span><em>doraecoffee.io.vn</em></div>
+              <div class="showcase__viewport">
+                <img src="assets/dorae.png" alt="Website Dorae Coffee — thương hiệu cà phê" class="showcase__shot" loading="lazy" />
+              </div>
+            </figure>
+          </div>
+          <div class="col-lg-5 order-lg-1">
+            <div class="showcase__meta">
+              <span class="tagline tagline--gold">Thương hiệu · F&amp;B</span>
+              <h3>Dorae Coffee</h3>
+              <p>Website thương hiệu cà phê theo phong cách tối giản cao cấp, tông xanh nhạt thanh lịch. Trang sản phẩm tương tác, trình bày sản phẩm sống động và khu blog kể chuyện thương hiệu.</p>
+              <ul class="feat">
+                <li>Phong cách tối giản, sang trọng</li>
+                <li>Trang sản phẩm tương tác</li>
+                <li>Bố cục editorial, typography tinh tế</li>
+                <li>Blog &amp; câu chuyện thương hiệu</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROCESS ===== -->
+    <section class="section" id="process">
+      <span class="shape shape--ring s10" aria-hidden="true"></span>
+      <span class="shape shape--plus s11" aria-hidden="true"></span>
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Quy trình làm việc</span>
+          <h2 class="section__title">Minh bạch &amp; <span class="grad-text">dễ dàng</span></h2>
+          <p class="section__sub">Bốn bước rõ ràng từ ý tưởng đến sản phẩm hoàn thiện.</p>
+        </div>
+        <div class="row g-4 steps">
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="step">
+              <span class="step__num">01</span>
+              <h3>Tư vấn &amp; lắng nghe</h3>
+              <p>Trao đổi nhu cầu, mục tiêu và ngân sách để đưa ra giải pháp phù hợp nhất.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="step">
+              <span class="step__num">02</span>
+              <h3>Thiết kế giao diện</h3>
+              <p>Phác thảo &amp; thiết kế UI/UX nghệ thuật, chốt phong cách trước khi lập trình.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="step">
+              <span class="step__num">03</span>
+              <h3>Lập trình &amp; kiểm thử</h3>
+              <p>Phát triển sản phẩm chuẩn, tối ưu tốc độ, kiểm thử kỹ trên mọi thiết bị.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 reveal">
+            <div class="step">
+              <span class="step__num">04</span>
+              <h3>Bàn giao &amp; đồng hành</h3>
+              <p>Bàn giao mã nguồn, hướng dẫn sử dụng và hỗ trợ kỹ thuật lâu dài.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- ===== CONTACT + FOOTER (khối gradient liền mạch) ===== -->
+  <div class="darkzone">
+    <div class="darkzone__bg" aria-hidden="true">
+      <span class="dz-blob dz-blob--1"></span>
+      <span class="dz-blob dz-blob--2"></span>
+      <span class="dz-grid"></span>
+    </div>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <!-- floating banner -->
+        <div class="contact__banner">
+          <div class="contact__banner-txt">
+            <h3>Bạn muốn một giải pháp số toàn diện?</h3>
+            <p>Tư duy thiết kế hiện đại, đồng hành tận tâm. Đừng ngần ngại liên hệ ngay!</p>
+          </div>
+        </div>
+
+        <div class="row contact__grid g-5 align-items-start">
+          <div class="col-lg-5 reveal">
+            <span class="eyebrow eyebrow--light">Liên hệ chúng tôi</span>
+            <h2 class="contact__title">Sẵn sàng nâng tầm <span class="gtext-gold">doanh nghiệp của bạn?</span></h2>
+            <p class="contact__lead">Để lại thông tin, đội ngũ Trấn Biên Web sẽ tư vấn miễn phí và phản hồi trong thời gian sớm nhất.</p>
+            <ul class="contact__perks">
+              <li>Tư vấn giải pháp 1-1 miễn phí</li>
+              <li>Thiết kế nghệ thuật, đúng thương hiệu</li>
+              <li>Bàn giao mã nguồn &amp; bảo hành</li>
+            </ul>
+
+            <div class="map-wrap">
+              <div class="map-circle">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d14934.46916106082!2d106.82963755!3d10.94540025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e1!3m2!1svi!2s!4v1781863505580!5m2!1svi!2s" title="Bản đồ Trấn Biên, Đồng Nai" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+              </div>
+              <div class="map-wrap__cap">
+                <strong> 226/15 Tố 1, Khu phố Trung Dũng, Phường Trấn Biên</strong>
+                <span>Đồng Nai, Việt Nam</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7 reveal">
+            <form class="form form--dark" id="contactForm" action="https://formspree.io/f/mzdqnpjz" method="POST" novalidate>
+              <div class="form__row">
+                <label>Họ và tên
+                  <input type="text" name="name" placeholder="Nguyễn Văn A" required />
+                </label>
+                <label>Số điện thoại
+                  <input type="tel" name="phone" placeholder="09xx xxx xxx" required />
+                </label>
+              </div>
+              <label>Email
+                <input type="email" name="email" placeholder="ban@congty.vn" required />
+              </label>
+              <label>Bạn cần gì?
+                <select name="service">
+                  <option>Thiết kế Website</option>
+                  <option>Phần mềm quản lý nội bộ</option>
+                </select>
+              </label>
+              <label>Nội dung
+                <textarea name="message" rows="3" placeholder="Mô tả ngắn về dự án của bạn..."></textarea>
+              </label>
+              <button type="submit" class="btn btn--gold btn--block">Gửi yêu cầu tư vấn</button>
+              <p class="form__note" id="formNote" hidden>✓ Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm nhất.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- footer merged into gradient -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__bottom footer__bottom--center">
+          <span>Mọi bản quyền thuộc về Trấn Biên Web</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
