@@ -1,4 +1,4 @@
-const CACHE_NAME = 'tranbienweb-runtime-v1';
+const CACHE_NAME = 'tranbienweb-runtime-v2';
 
 self.addEventListener('install', () => {
   self.skipWaiting();
@@ -25,7 +25,7 @@ self.addEventListener('fetch', (event) => {
       fetch(request, { cache: 'no-store' })
         .then((response) => {
           const copy = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put('/index.html', copy));
+          caches.open(CACHE_NAME).then((cache) => cache.put(request, copy));
           return response;
         })
         .catch(() => caches.match('/index.html'))

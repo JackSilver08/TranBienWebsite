@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SEO Admin - Trấn Biên Web</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/admin.css?v=20260620-seo-admin-editor-mode" />
+  <link rel="icon" type="image/png" href="assets/TranBienWeb Icon.png" />
+</head>
+<body>
+  <main class="admin-shell">
+    <section class="login-panel" id="loginPanel" aria-modal="true" role="dialog">
+      <div class="login-card">
+        <img src="assets/logo-trim.png" alt="Trấn Biên Web" />
+        <h1>SEO Admin</h1>
+        <p>Đăng nhập để viết và chấm điểm bài SEO theo chuẩn Rank Math tinh gọn.</p>
+        <div class="setup-note" id="loginSetupNote"></div>
+        <form id="loginForm">
+          <label>Email
+            <input type="email" name="email" value="tranbienweb@gmail.com" autocomplete="username" required />
+          </label>
+          <label>Mật khẩu
+            <input type="password" name="password" autocomplete="current-password" required />
+          </label>
+          <button class="btn btn--gold" type="button" id="loginBtn">Đăng nhập</button>
+          <p class="alert" id="loginAlert"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="editor-page" id="editorPage">
+      <header class="admin-topbar">
+        <a class="brand" href="index.html">
+          <img src="assets/logo-trim.png" alt="Trấn Biên Web" />
+          <span>SEO Admin</span>
+        </a>
+        <div class="topbar-actions">
+          <a class="btn btn--ghost" id="sheetLink" href="#" target="_blank" rel="noopener">Google Sheet</a>
+          <button class="btn btn--ghost" type="button" id="logoutBtn">Đăng xuất</button>
+        </div>
+      </header>
+
+      <div class="setup-note" id="editorSetupNote"></div>
+
+      <form class="editor-grid" id="articleForm">
+        <section class="panel editor-main">
+          <div class="panel-head">
+            <div>
+              <span class="eyebrow">Trấn Biên Web</span>
+              <h1>Viết bài SEO</h1>
+            </div>
+            <button class="btn btn--gold" type="submit" id="saveBtn">Lưu & hiển thị</button>
+          </div>
+
+          <input type="hidden" id="articleId" name="id" />
+
+          <div class="field-grid">
+            <label>Tiêu đề bài viết
+              <input id="titleInput" name="title" type="text" placeholder="Ví dụ: Thiết kế website chuẩn SEO cho doanh nghiệp Đồng Nai" required />
+            </label>
+            <label>Slug
+              <input id="slugInput" name="slug" type="text" placeholder="thiet-ke-website-chuan-seo-dong-nai" required />
+            </label>
+          </div>
+
+          <div class="field-grid">
+            <label>Từ khóa chính
+              <input id="focusKeywordInput" name="focusKeyword" type="text" placeholder="thiết kế website đồng nai" />
+            </label>
+            <label>Từ khóa phụ
+              <input id="secondaryKeywordsInput" name="secondaryKeywords" type="text" placeholder="landing page, phần mềm nội bộ, seo website" />
+            </label>
+          </div>
+
+          <div class="field-grid">
+            <label>Meta title
+              <input id="metaTitleInput" name="metaTitle" type="text" maxlength="80" />
+              <small id="metaTitleCount">0 ký tự</small>
+            </label>
+            <label>Meta description
+              <textarea id="metaDescriptionInput" name="metaDescription" rows="3" maxlength="180"></textarea>
+              <small id="metaDescriptionCount">0 ký tự</small>
+            </label>
+          </div>
+
+          <div class="field-grid">
+            <label>Thumbnail bài viết
+              <input id="thumbnailFileInput" type="file" accept="image/*" />
+            </label>
+            <label>URL thumbnail
+              <input id="thumbnailUrlInput" name="thumbnailUrl" type="url" placeholder="https://..." />
+            </label>
+          </div>
+
+          <label>Alt text thumbnail
+            <input id="thumbnailAltInput" name="thumbnailAlt" type="text" placeholder="Mô tả ảnh thumbnail chứa từ khóa nếu phù hợp" />
+          </label>
+
+          <div class="editor-modebar">
+            <div class="editor-tabs" aria-label="Chế độ soạn thảo">
+              <button type="button" class="is-active" data-editor-mode="text">Văn bản</button>
+              <button type="button" data-editor-mode="html">HTML</button>
+            </div>
+            <p id="editorModeHint">Soạn nội dung dạng văn bản có định dạng bằng thanh công cụ.</p>
+          </div>
+
+          <div class="markdown-toolbar" aria-label="Công cụ Markdown">
+            <button type="button" data-prefix="## ">H2</button>
+            <button type="button" data-prefix="### ">H3</button>
+            <button type="button" data-wrap="**">B</button>
+            <button type="button" data-wrap="*">I</button>
+            <button type="button" data-prefix="> ">Quote</button>
+            <button type="button" data-prefix="- ">List</button>
+            <button type="button" id="linkBtn">Link</button>
+            <button type="button" id="imageBtn">Ảnh</button>
+            <input id="contentImageInput" type="file" accept="image/*" hidden />
+          </div>
+
+          <label><span id="contentLabel">Nội dung SEO</span>
+            <textarea class="markdown-input" id="contentInput" name="contentMarkdown" placeholder="Viết nội dung bài SEO tại đây..." required></textarea>
+          </label>
+
+          <section class="preview-panel">
+            <div class="panel-head panel-head--compact">
+              <h2>Preview</h2>
+            </div>
+            <article class="article-preview" id="preview"></article>
+          </section>
+        </section>
+
+        <aside class="panel seo-panel">
+          <div class="score-card">
+            <div class="score-ring" id="scoreRing" style="--score: 0%">0</div>
+            <div>
+              <h2>Điểm SEO</h2>
+              <p id="scoreSummary">Chưa có nội dung để phân tích.</p>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div><strong id="wordCount">0</strong><span>Từ</span></div>
+            <div><strong id="keywordDensity">0%</strong><span>Mật độ</span></div>
+            <div><strong id="readabilityScore">0</strong><span>Dễ đọc</span></div>
+          </div>
+
+          <div class="seo-group">
+            <h3>SEO cơ bản</h3>
+            <div id="basicChecks"></div>
+          </div>
+
+          <div class="seo-group">
+            <h3>Nội dung</h3>
+            <div id="contentChecks"></div>
+          </div>
+
+          <div class="seo-group">
+            <h3>Hình ảnh & liên kết</h3>
+            <div id="mediaChecks"></div>
+          </div>
+
+          <div class="save-status" id="saveStatus"></div>
+        </aside>
+      </form>
+    </section>
+
+    <section class="admin-modal" id="adminModal" hidden aria-modal="true" role="dialog">
+      <div class="admin-modal__backdrop" data-modal-cancel></div>
+      <div class="admin-modal__card">
+        <span class="admin-modal__eyebrow" id="modalEyebrow">Trấn Biên Web</span>
+        <h2 id="modalTitle">Thông báo</h2>
+        <p id="modalMessage"></p>
+        <label class="admin-modal__field" id="modalField" hidden>
+          <span id="modalInputLabel">Nội dung</span>
+          <input id="modalInput" type="text" />
+        </label>
+        <div class="admin-modal__actions">
+          <button class="btn btn--ghost" type="button" id="modalCancel">Hủy</button>
+          <button class="btn btn--gold" type="button" id="modalConfirm">Đồng ý</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/admin-config.js?v=20260620-seo-admin-editor-mode"></script>
+  <script src="js/admin.js?v=20260620-seo-admin-editor-mode"></script>
+</body>
+</html>

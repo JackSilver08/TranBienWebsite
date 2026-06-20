@@ -20,7 +20,7 @@
 
   <!-- Styles -->
   <link rel="preload" as="image" href="assets/sidebar-art.jpg" media="(max-width: 991px)" />
-  <link rel="stylesheet" href="css/style.css?v=20260619-sidebar-list" />
+  <link rel="stylesheet" href="css/style.css?v=20260620-article-detail" />
   <link rel="icon" type="image/png" href="assets/TranBienWeb Icon.png" />
 </head>
 <body>
@@ -352,6 +352,20 @@
       </div>
     </section>
 
+    <!-- ===== SEO ARTICLES ===== -->
+    <section class="section section--articles" id="articles" hidden>
+      <span class="shape shape--blob s12" aria-hidden="true"></span>
+      <span class="shape shape--dots s13" aria-hidden="true"></span>
+      <div class="container">
+        <div class="section__head reveal">
+          <span class="eyebrow">Góc kiến thức</span>
+          <h2 class="section__title">Bài viết <span class="grad-text">mới nhất</span></h2>
+          <p class="section__sub">Những chia sẻ ngắn gọn, thực tế về 3chuyển đổi số cho doanh nghiệp.</p>
+        </div>
+        <div class="article-grid" id="articleGrid" aria-live="polite"></div>
+      </div>
+    </section>
+
   </main>
   <!-- ===== CONTACT + FOOTER (khối gradient liền mạch) ===== -->
   <div class="darkzone">
@@ -394,7 +408,7 @@
           </div>
 
           <div class="col-lg-7 reveal">
-            <form class="form form--dark" id="contactForm" action="https://formspree.io/f/mzdqnpjz" method="POST" novalidate>
+            <form class="form form--dark" id="contactForm" action="https://formspree.io/f/maqzrkvb" method="POST" novalidate>
               <div class="form__row">
                 <label>Họ và tên
                   <input type="text" name="name" placeholder="Nguyễn Văn A" required />
@@ -416,6 +430,7 @@
                 <textarea name="message" rows="3" placeholder="Mô tả ngắn về dự án của bạn..."></textarea>
               </label>
               <button type="submit" class="btn btn--gold btn--block">Gửi yêu cầu tư vấn</button>
+              <p class="form__contact-line">SĐT: 0783296329 <span>|</span> Email: tranbienweb@gmail.com</p>
               <p class="form__note" id="formNote" hidden>✓ Cảm ơn bạn! Chúng tôi sẽ liên hệ sớm nhất.</p>
             </form>
           </div>
@@ -426,6 +441,7 @@
     <!-- footer merged into gradient -->
     <footer class="footer">
       <div class="container">
+        <hr class="footer__line" />
         <div class="footer__bottom footer__bottom--center">
           <span>Mọi bản quyền thuộc về Trấn Biên Web</span>
         </div>
@@ -433,6 +449,8 @@
     </footer>
   </div>
 
+  <script src="js/admin-config.js?v=20260620-seo-admin-api-fixed"></script>
+  <script src="js/articles.js?v=20260620-fetch"></script>
   <script src="js/main.js?v=20260619-sidebar-refresh"></script>
 </body>
 </html>
