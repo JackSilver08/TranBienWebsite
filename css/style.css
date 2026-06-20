@@ -891,6 +891,14 @@ body.nav-open { overflow: hidden; }
 .form__contact-line span {
   color: rgba(255,212,121,0.8);
 }
+.form__contact-fb {
+  display: inline-flex;
+  align-items: center;
+  color: rgba(255,255,255,0.72);
+  transition: color .25s, transform .25s;
+}
+.form__contact-fb svg { width: 18px; height: 18px; display: block; }
+.form__contact-fb:hover { color: var(--gold); transform: translateY(-1px); }
 .form--dark input::placeholder, .form--dark textarea::placeholder { color: rgba(255,255,255,0.5); }
 .form--dark input:focus, .form--dark select:focus, .form--dark textarea:focus {
   border-color: var(--gold); box-shadow: 0 0 0 4px rgba(245,161,30,0.2); background: rgba(255,255,255,0.12);
