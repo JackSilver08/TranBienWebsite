@@ -449,7 +449,8 @@ body.nav-open { overflow: hidden; }
 .showcase__bar em { margin-left: 12px; font-style: normal; font-size: 0.78rem; color: var(--gray-soft); background: rgba(27,35,48,0.05); border-radius: 8px; padding: 5px 14px; }
 .showcase__frame { margin: 0; }
 .showcase__viewport { height: 460px; overflow: hidden; position: relative; background: #fff; }
-.showcase__shot { width: 100%; display: block; }
+.showcase__shot { width: 100%; display: block; transition: transform 4.5s cubic-bezier(.22,.61,.36,1); will-change: transform; }
+.showcase__frame:hover .showcase__shot { transform: translateY(calc(-100% + 460px)); }
 .showcase__meta .tagline { display:inline-block; font-size: 0.76rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--blue); margin-bottom: 12px; padding: 5px 12px; border-radius: 100px; background: rgba(75,123,255,0.1); }
 .showcase__meta .tagline--gold { color: var(--gold-deep); background: rgba(245,161,30,0.12); }
 .showcase__meta h3 { font-family: var(--font-head); font-weight: 800; font-size: clamp(1.6rem,2.6vw,2.2rem); margin: 0 0 14px; letter-spacing: -.02em; }
@@ -1308,6 +1309,8 @@ body.nav-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
+  /* Giữ lại hiệu ứng trượt ảnh dự án vì đây là chủ đích trải nghiệm */
+  .showcase__shot { transition-duration: 4.5s !important; }
 }
 
 /* ============================================================
