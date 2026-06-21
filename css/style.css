@@ -1128,6 +1128,18 @@ body.nav-open { overflow: hidden; }
 .footer__bottom--center { justify-content: center; text-align: center; }
 .darkzone .footer .btn--gold { color: #fff; }
 
+/* Article page — sticky simple footer */
+.page-article { display: flex; flex-direction: column; min-height: 100vh; }
+.page-article main { flex: 1 0 auto; }
+.article-footer {
+  flex-shrink: 0;
+  background: linear-gradient(165deg, #1B45C0 0%, #14276A 100%);
+  color: rgba(255,255,255,0.82);
+  text-align: center;
+  padding: 22px 0;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 767px) {
   .contact__banner { width: 100%; margin: -50px 0 48px; padding: 26px 24px; transform: none; border-radius: 22px; }
   .contact__banner::before { display: none; }
