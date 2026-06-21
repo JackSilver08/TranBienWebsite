@@ -20,7 +20,7 @@
 
   <!-- Styles -->
   <link rel="preload" as="image" href="assets/sidebar-art.jpg" media="(max-width: 991px)" />
-  <link rel="stylesheet" href="css/style.css?v=20260620-article-detail" />
+  <link rel="stylesheet" href="css/style.css?v=20260621-vm-editorial" />
   <link rel="icon" type="image/png" href="assets/TranBienWeb Icon.png" />
 </head>
 <body>
@@ -58,6 +58,7 @@
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
           </button>
         </div>
+        <a href="#team">Đội ngũ</a>
         <a href="#services">Dịch vụ</a>
         <a href="#portfolio">Dự án</a>
         <a href="#process">Quy trình</a>
@@ -163,35 +164,163 @@
       </div>
     </section>
 
-    <!-- ===== VISION & MISSION ===== -->
-    <section class="section section--alt" id="about">
-      <span class="shape shape--ring s5" aria-hidden="true"></span>
-      <span class="shape shape--dots s7" aria-hidden="true"></span>
+    <!-- ===== VISION & MISSION (editorial brand-direction) ===== -->
+    <section class="section vision-mission-section" id="about">
+      <!-- very soft ambient light in the corners -->
+      <span class="vm-decor vm-glow vm-glow--blue" aria-hidden="true"></span>
+      <span class="vm-decor vm-glow vm-glow--gold" aria-hidden="true"></span>
+
       <div class="container">
-        <div class="section__head reveal">
+        <!-- heading -->
+        <div class="vm-header reveal">
           <span class="eyebrow">Giới thiệu</span>
-          <h2 class="section__title">Tầm nhìn &amp; <span class="grad-text">Sứ mệnh</span></h2>
-          <p class="section__sub">Đồng hành cùng doanh nghiệp địa phương trên hành trình chuyển đổi số.</p>
+          <h2 class="vm-title">Tầm nhìn &amp; <span class="grad-text">Sứ mệnh</span></h2>
+          <p class="vm-subtitle">Đồng hành cùng doanh nghiệp địa phương trên hành trình chuyển đổi số.</p>
         </div>
 
-        <div class="vmx">
-          <article class="vmx__card vmx__card--mission reveal">
-            <div class="vmx__ico ico--blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
+        <!-- stage = thin diagonal ribbon + two asymmetric glass panels -->
+        <div class="vm-stage">
+          <!-- thin, soft diagonal ribbon as a visual-direction layer -->
+          <span class="vm-ribbon" aria-hidden="true"></span>
+
+          <!-- minimal art-direction details -->
+          <span class="vm-decor vm-orbit" aria-hidden="true"></span>
+          <span class="vm-decor vm-dots" aria-hidden="true"></span>
+          <span class="vm-decor vm-coord vm-coord--blue" aria-hidden="true"></span>
+          <span class="vm-decor vm-coord vm-coord--gold" aria-hidden="true"></span>
+
+          <div class="vm-grid">
+            <!-- soft connector between the two panels -->
+            <span class="vm-connector" aria-hidden="true"></span>
+
+            <!-- MISSION (left, slightly lower) -->
+            <article class="vm-panel vm-panel-mission reveal">
+              <span class="vm-icon vm-icon--blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor"/></svg>
+              </span>
+              <span class="vm-label vm-label--blue">Sứ mệnh</span>
+              <h3 class="vm-panel-title">Giải pháp số cho doanh nghiệp địa phương</h3>
+              <p class="vm-panel-text">Mang đến website và phần mềm chất lượng cao, chi phí hợp lý cho các doanh nghiệp vừa và nhỏ tại khu vực <strong>Trấn Biên, Đồng Nai</strong> — giúp mỗi doanh nghiệp tự tin chuyển đổi số và phát triển bền vững.</p>
+            </article>
+
+            <!-- VISION (right, slightly higher) -->
+            <article class="vm-panel vm-panel-vision reveal">
+              <span class="vm-icon vm-icon--gold">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              </span>
+              <span class="vm-label vm-label--gold">Tầm nhìn</span>
+              <h3 class="vm-panel-title">Vươn ra các khu vực lân cận</h3>
+              <p class="vm-panel-text">Trở thành đối tác công nghệ được tin cậy, mở rộng đồng hành cùng doanh nghiệp tại các <strong class="vm-strong-gold">khu vực lân cận</strong>, lan toả giá trị của thiết kế nghệ thuật và công nghệ hiện đại ra toàn vùng.</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- brand credo -->
+        <p class="vm-quote reveal">
+          <span class="vm-quote-mark" aria-hidden="true">&ldquo;</span>
+          Công nghệ là công cụ — Con người là trung tâm — Giá trị là kim chỉ nam
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== CORE TEAM (editorial showcase) ===== -->
+    <section class="section team" id="team">
+      <!-- decorative tech layers -->
+      <span class="team-bg-grid" aria-hidden="true"></span>
+      <span class="team-bg-word" aria-hidden="true">BUILD&nbsp;THE&nbsp;WEB</span>
+      <span class="shape shape--dots s7" aria-hidden="true"></span>
+
+      <div class="container">
+        <!-- intro -->
+        <div class="section__head team-head reveal">
+          <span class="eyebrow">Core Team</span>
+          <h2 class="section__title">
+            Đội ngũ đứng sau từng dòng code và
+            <span class="grad-text">từng điểm chạm khách hàng</span>
+          </h2>
+          <p class="section__sub">
+            Trấn Biên Web được vận hành bởi một đội ngũ tinh gọn — kết hợp lập trình, SEO
+            và chăm sóc khách hàng để tạo ra những sản phẩm web thực tế, dễ dùng và phù hợp
+            với doanh nghiệp Việt.
+          </p>
+        </div>
+
+        <!-- asymmetric roster -->
+        <div class="team-roster">
+
+          <!-- coordinate / connector decorations -->
+          <span class="team-line team-line--1" aria-hidden="true"></span>
+          <span class="team-line team-line--2" aria-hidden="true"></span>
+
+          <!-- MEMBER 01 — Trần Quang Tuấn (LEADER, top anchor) -->
+          <article class="team-member team-member--lead reveal">
+            <span class="team-lead__word" aria-hidden="true">LEADER</span>
+            <span class="team-member__index">01</span>
+            <div class="team-photo team-photo--lead">
+              <span class="team-photo__block" aria-hidden="true"></span>
+              <img src="assets/TranQuangTuan.webp"
+                   alt="Trần Quang Tuấn — Leader, chuyên viên lập trình chính" loading="lazy" />
+              <span class="team-photo__glow" aria-hidden="true"></span>
+              <span class="team-photo__tick" aria-hidden="true">{ TBW }</span>
             </div>
-            <span class="vmx__label">Sứ mệnh</span>
-            <h3>Giải pháp số cho doanh nghiệp địa phương</h3>
-            <p>Mang đến website và phần mềm chất lượng cao, chi phí hợp lý cho các doanh nghiệp vừa và nhỏ tại khu vực <strong>Trấn Biên, Đồng Nai</strong> — giúp mỗi doanh nghiệp tự tin chuyển đổi số và phát triển bền vững.</p>
+            <div class="team-member__info team-member__info--lead">
+              <span class="team-member__role">Leader · Chuyên viên lập trình chính</span>
+              <h3 class="team-member__name">Trần Quang Tuấn</h3>
+              <p class="team-member__desc">
+                Định hướng kỹ thuật, xây dựng kiến trúc sản phẩm và đảm bảo website vận hành
+                ổn định, dễ mở rộng.
+              </p>
+              <div class="team-lead__meta">
+                <span><i>•</i> Kiến trúc &amp; chuẩn kỹ thuật</span>
+                <span><i>•</i> Định hướng sản phẩm</span>
+              </div>
+            </div>
           </article>
 
-          <article class="vmx__card vmx__card--vision reveal">
-            <div class="vmx__ico ico--gold">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          <!-- MEMBER 02 — Phạm Viết Quang Minh -->
+          <article class="team-member team-member--01 reveal">
+            <span class="team-member__index">02</span>
+            <div class="team-photo team-photo--blue">
+              <span class="team-photo__block" aria-hidden="true"></span>
+              <img src="assets/PhamVietQuangMinh.webp"
+                   alt="Phạm Viết Quang Minh — Chuyên viên lập trình" loading="lazy" />
+              <span class="team-photo__glow" aria-hidden="true"></span>
+              <span class="team-photo__tick" aria-hidden="true">&lt;/&gt;</span>
             </div>
-            <span class="vmx__label vmx__label--gold">Tầm nhìn</span>
-            <h3>Vươn ra các khu vực lân cận</h3>
-            <p>Trở thành đối tác công nghệ được tin cậy, mở rộng đồng hành cùng doanh nghiệp tại các <strong>khu vực lân cận</strong>, lan toả giá trị của thiết kế nghệ thuật và công nghệ hiện đại ra toàn vùng.</p>
+            <span class="team-member__vrole">FRONTEND&nbsp;·&nbsp;DEV</span>
+            <div class="team-member__info">
+              <span class="team-member__role">Chuyên viên lập trình</span>
+              <h3 class="team-member__name">Phạm Viết Quang Minh</h3>
+              <p class="team-member__desc">
+                Xây dựng giao diện, xử lý chức năng và tối ưu trải nghiệm sử dụng trên website.
+              </p>
+            </div>
           </article>
+
+          <!-- MEMBER 03 — Tống Minh Quân -->
+          <article class="team-member team-member--02 reveal">
+            <span class="team-member__index team-member__index--gold">03</span>
+            <div class="team-photo team-photo--gold">
+              <span class="team-photo__block" aria-hidden="true"></span>
+              <img src="assets/TongMinhQuan.webp"
+                   alt="Tống Minh Quân — Chuyên viên SEO web, chăm sóc khách hàng" loading="lazy" />
+              <span class="team-photo__glow" aria-hidden="true"></span>
+              <!-- keyword connectors (anchored to photo) -->
+              <ul class="team-keywords" aria-hidden="true">
+                <li>SEO</li><li>Content</li><li>Customer&nbsp;Care</li>
+              </ul>
+            </div>
+            <span class="team-member__vrole team-member__vrole--gold">SEO&nbsp;·&nbsp;CARE</span>
+            <div class="team-member__info">
+              <span class="team-member__role team-member__role--gold">Chuyên viên SEO web · Chăm sóc khách hàng</span>
+              <h3 class="team-member__name">Tống Minh Quân</h3>
+              <p class="team-member__desc">
+                Hỗ trợ định hướng nội dung, chăm sóc khách hàng và giúp website tiếp cận
+                đúng nhu cầu kinh doanh.
+              </p>
+            </div>
+          </article>
+
         </div>
       </div>
     </section>
