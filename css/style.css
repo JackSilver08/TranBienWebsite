@@ -154,27 +154,104 @@ ul { list-style: none; margin: 0; padding: 0; }
   background: transparent;
   box-shadow: none;
 }
+
+/* Register the spinning angle so the gradient ring can animate */
+@property --nav-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .nav__inner {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 18px;
-  padding: 10px 18px;
+  padding: 10px 22px;
   border-radius: 999px;
-  background: rgba(255,255,255,0.72);
-  border: 1px solid rgba(255,255,255,0.78);
-  box-shadow: 0 18px 46px rgba(27, 54, 168, 0.08);
-  backdrop-filter: blur(16px) saturate(145%);
-  -webkit-backdrop-filter: blur(16px) saturate(145%);
+  background: transparent;
+  overflow: visible;
 }
-.nav__brand { display: flex; align-items: center; }
+/* Glass body of the pill (sits above aurora, below content) */
+.nav__inner::after {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: rgba(255,255,255,0.66);
+  box-shadow: 0 18px 46px rgba(27, 54, 168, 0.10);
+  backdrop-filter: blur(16px) saturate(150%);
+  -webkit-backdrop-filter: blur(16px) saturate(150%);
+}
+/* Hand-painted gradient ring running around the pill */
+.nav__inner::before {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  padding: 1.6px;
+  background: conic-gradient(from var(--nav-angle),
+    #4B7BFF, #2A5BE6, #F8B43A, #E8770C, #4B7BFF);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: .35;
+  animation: nav-ring-spin 7s linear infinite;
+  transition: opacity .4s var(--ease);
+  pointer-events: none;
+}
+.nav.scrolled .nav__inner::before { opacity: .95; }
+@keyframes nav-ring-spin { to { --nav-angle: 360deg; } }
+
+/* Aurora ink that drifts behind the glass and bleeds out at the edges */
+.nav__aurora {
+  position: absolute; inset: -45% -8%;
+  z-index: -1;
+  border-radius: 999px;
+  pointer-events: none;
+  background:
+    radial-gradient(42% 120% at 18% 50%, rgba(75,123,255,0.55), transparent 70%),
+    radial-gradient(38% 120% at 82% 50%, rgba(245,161,30,0.50), transparent 70%),
+    radial-gradient(30% 90% at 52% 50%, rgba(42,91,230,0.30), transparent 72%);
+  filter: blur(26px);
+  opacity: .9;
+  animation: nav-aurora 9s var(--ease) infinite alternate;
+}
+@keyframes nav-aurora {
+  0%   { transform: translateX(-7%) scale(1);    filter: blur(26px) hue-rotate(0deg); }
+  100% { transform: translateX(7%)  scale(1.12); filter: blur(30px) hue-rotate(-18deg); }
+}
+
+.nav__brand { position: relative; z-index: 2; display: flex; align-items: center; }
 .nav__logo { height: 48px; width: auto; transition: height .35s var(--ease), transform .35s var(--ease); }
-.nav__brand:hover .nav__logo { transform: translateY(-1px); }
+.nav__brand:hover .nav__logo { transform: translateY(-1px) rotate(-1.5deg); }
 .nav.scrolled .nav__logo { height: 42px; }
 .nav__brand-text { font-family: var(--font-head); font-weight: 800; font-size: 1.25rem; color: var(--blue-deep); }
 .nav__brand-text span { color: var(--gold-deep); margin-left: 4px; }
 
+/* Morphing ink blot next to the logo */
+.nav__spark {
+  width: 9px; height: 9px; margin-left: 7px; flex: 0 0 9px;
+  border-radius: 47% 53% 58% 42% / 56% 44% 56% 44%;
+  background: linear-gradient(135deg, #F8B43A, #E8770C 60%, #2A5BE6);
+  box-shadow: 0 0 0 0 rgba(245,161,30,0.55);
+  animation: nav-spark-morph 6s ease-in-out infinite, nav-spark-pulse 2.6s ease-out infinite;
+}
+@keyframes nav-spark-morph {
+  0%, 100% { border-radius: 47% 53% 58% 42% / 56% 44% 56% 44%; transform: rotate(0deg); }
+  50%      { border-radius: 62% 38% 41% 59% / 43% 61% 39% 57%; transform: rotate(180deg); }
+}
+@keyframes nav-spark-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(245,161,30,0.55); }
+  70%  { box-shadow: 0 0 0 9px rgba(245,161,30,0); }
+  100% { box-shadow: 0 0 0 0 rgba(245,161,30,0); }
+}
+
 .nav__links {
+  position: relative; z-index: 2;
   display: flex;
   justify-content: center;
   gap: 34px;
@@ -184,17 +261,22 @@ ul { list-style: none; margin: 0; padding: 0; }
   font-size: 0.95rem;
   color: #566173;
   position: relative;
-  padding: 8px 0;
-  transition: color .25s;
+  padding: 8px 2px 12px;
+  transition: color .25s var(--ease), transform .25s var(--ease);
 }
+/* Hand-painted brush stroke that sweeps in on hover */
 .nav__links a::after {
   content: ''; position: absolute; left: 50%; bottom: 0;
-  width: 0; height: 2px; border-radius: 2px;
-  transform: translateX(-50%);
-  background: var(--grad-gold); transition: width .3s var(--ease);
+  width: 100%; min-width: 30px; height: 11px;
+  transform: translateX(-50%) scaleX(0) rotate(-1deg);
+  transform-origin: left center;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 14'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' x2='1'%3E%3Cstop offset='0' stop-color='%23F8B43A'/%3E%3Cstop offset='.55' stop-color='%23F5A11E'/%3E%3Cstop offset='1' stop-color='%23E8770C'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath fill='url(%23b)' d='M3 7c14-5 30 3 46-1 13-3 27 4 41 1 9-2 18-4 27-1-7 6-18 4-27 5-16 2-31-4-46-2C20 11 12 6 3 9c-1-.6-1-1.4 0-2z'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  transition: transform .4s var(--ease);
 }
-.nav__links a:hover { color: var(--blue-deep); }
-.nav__links a:hover::after { width: 24px; }
+.nav__links a:hover { color: var(--blue-deep); transform: translateY(-1px); }
+.nav__links a:hover::after { transform: translateX(-50%) scaleX(1) rotate(-1deg); }
+
+.nav__actions { position: relative; z-index: 2; }
 
 .nav__actions { display: flex; align-items: center; justify-content: flex-end; gap: 14px; min-height: 1px; }
 .nav__toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; }
@@ -1178,6 +1260,10 @@ body.nav-open { overflow: hidden; }
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     backdrop-filter: blur(14px) saturate(140%);
   }
+  /* The floating-pill art layers are desktop-only — fall back to a flat bar */
+  .nav__inner::before,
+  .nav__inner::after,
+  .nav__aurora { display: none; }
   /* nudge hamburger inward from the right edge */
   .nav__actions { padding-right: 4px; }
   .nav__logo { height: 38px; }
